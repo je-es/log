@@ -1,0 +1,8 @@
+node_modules
+.vscode
+docs
+src
+test
+.npmrc
+/dev.js
+/dev.ts
