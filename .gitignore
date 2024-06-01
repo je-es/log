@@ -1,5 +1,3 @@
 node_modules
 .npmrc
 /dist
-/dev.js
-/dev.ts

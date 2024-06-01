@@ -4,5 +4,3 @@ docs
 src
 test
 .npmrc
-/dev.js
-/dev.ts
