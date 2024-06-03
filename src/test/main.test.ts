@@ -14,6 +14,8 @@
         {
             expect(log).toBeDefined();
             expect(logger).toBeDefined();
+
+            log('test')
         });
     });
 

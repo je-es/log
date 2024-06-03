@@ -54,7 +54,7 @@
 
                 msg = '';
                 msg += style.design(Patterns.time, Helpers.getAT(options.minify)) + ' ';
-                msg += style.design(Patterns.location, Helpers.getLoc(options.minify, options.up)) + '\n';
+                msg += style.design(Patterns.location, Helpers.getLoc(options.minify)) + '\n';
 
                 msg += style.design(Patterns.msg(options.level), _msg);
 

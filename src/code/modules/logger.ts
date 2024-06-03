@@ -54,7 +54,7 @@
             if((options.save || (typeof options.save === 'undefined' && this.options.save)))
             log(msg,
             {
-                minify: this.options.minify, up: true,
+                minify: this.options.minify,
                 level: 'error',
                 to: options.filePath ? options.filePath : path.join(this.options.root!, './logs/errors.log'),
             });
@@ -63,7 +63,6 @@
             else
             log(msg,
                 {
-                    up: true,
                     level: 'error',
                     minify: true,
                 });
@@ -85,7 +84,7 @@
                 if((options.save || (typeof options.save === 'undefined' && this.options.save)))
                 log(msg,
                 {
-                    minify: this.options.minify, up: true,
+                    minify: this.options.minify,
                     level: 'debug',
                     to: options.filePath ? options.filePath : path.join(this.options.root!, './logs/debug.log'),
                 });
@@ -94,7 +93,6 @@
                 else
                 log(msg,
                 {
-                    up: true,
                     level: 'debug',
                     minify: true,
                 });
@@ -115,7 +113,7 @@
             if((options.save || (typeof options.save === 'undefined' && this.options.save)))
             log(msg,
             {
-                minify: this.options.minify, up: true,
+                minify: this.options.minify,
                 level: 'warn',
                 to: options.filePath ? options.filePath : path.join(this.options.root!, './logs/warn.log'),
             });
@@ -124,7 +122,6 @@
             else
             log(msg,
             {
-                up: true,
                 level: 'warn',
                 minify: true,
             });
@@ -144,7 +141,7 @@
             if((options.save || (typeof options.save === 'undefined' && this.options.save)))
             log(msg,
             {
-                minify: this.options.minify, up: true,
+                minify: this.options.minify,
                 level: 'info',
                 to: options.filePath ? options.filePath : path.join(this.options.root!, './logs/info.log'),
             });
@@ -153,7 +150,6 @@
             else
             log(msg,
             {
-                up: true,
                 level: 'info',
                 minify: true,
             });

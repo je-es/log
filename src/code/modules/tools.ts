@@ -21,7 +21,6 @@
         level           ?: 'info' | 'warn' | 'error' | 'debug';
         minify          ?: boolean;
         to              ?: 'terminal' | string;
-        up              ?: boolean;
     }
 
     export interface i_loc
@@ -85,28 +84,34 @@
             return _getDate() + ' ' + _getTime();
         },
 
-        getLoc: function (minify: boolean, up ?: boolean): i_loc
+        getLoc: function (minify: boolean): i_loc
         {
-            // default level of stack
-            const level = up ? 5 : 4;
-
-            const _getPos = (level: number): i_loc =>
+            const _getLastLoc = (): i_loc =>
+            {
+                const loc: i_loc =
                 {
-                const loc: i_loc = {
-                    path: '',
-                    line: 0,
-                    col: 0,
-                    func: ''
+                    path    : '',
+                    line    : 0,
+                    col     : 0,
+                    func    : ''
                 };
 
                 const stackTrace = (new Error()).stack?.split('\n');
-                const callerInfo = stackTrace ? stackTrace[level]?.match(/at\s+(.*)\s+\((.*):(\d+):(\d+)\)/) : null;
+                // find last stack
+                if(stackTrace)
+                for(let i = stackTrace.length - 1; i >= 0; i--)
+                {
+                    const callerInfo = stackTrace[i]?.match(/at\s+(.*)\s+\((.*):(\d+):(\d+)\)/);
 
-                if (callerInfo) {
-                    loc.path = callerInfo[2];
-                    loc.line = parseInt(callerInfo[3]);
-                    loc.col = parseInt(callerInfo[4]);
-                    loc.func = callerInfo[1].trim();
+                    if(callerInfo)
+                    {
+                        loc.path = callerInfo[2];
+                        loc.line = parseInt(callerInfo[3]);
+                        loc.col = parseInt(callerInfo[4]);
+                        loc.func = callerInfo[1].trim();
+
+                        break;
+                    }
                 }
 
                 return loc;
@@ -122,7 +127,7 @@
                 return '...' + '\\' + parts.slice(-3).join('\\');
             };
 
-            let pos = _getPos(level);
+            let pos = _getLastLoc();
 
             if (minify) {
                 pos.path = _minifyPath(pos.path);
