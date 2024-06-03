@@ -99,9 +99,8 @@
                 const stackTrace = (new Error()).stack?.split('\n');
                 // find last stack
                 if(stackTrace)
-                for(let i = stackTrace.length - 1; i >= 0; i--)
                 {
-                    const callerInfo = stackTrace[i]?.match(/at\s+(.*)\s+\((.*):(\d+):(\d+)\)/);
+                    const callerInfo = stackTrace[stackTrace.length - 1]?.match(/at\s+(.*)\s+\((.*):(\d+):(\d+)\)/);
 
                     if(callerInfo)
                     {
@@ -109,8 +108,6 @@
                         loc.line = parseInt(callerInfo[3]);
                         loc.col = parseInt(callerInfo[4]);
                         loc.func = callerInfo[1].trim();
-
-                        break;
                     }
                 }
 
